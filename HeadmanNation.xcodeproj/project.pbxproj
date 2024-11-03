@@ -15,6 +15,7 @@
 		B9210A0D2C73863600DB3C27 /* HeadmanNationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9210A0C2C73863600DB3C27 /* HeadmanNationTests.swift */; };
 		B9210A172C73863600DB3C27 /* HeadmanNationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9210A162C73863600DB3C27 /* HeadmanNationUITests.swift */; };
 		B9210A192C73863600DB3C27 /* HeadmanNationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9210A182C73863600DB3C27 /* HeadmanNationUITestsLaunchTests.swift */; };
+		B957FD432CD705B00011D309 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957FD422CD705B00011D309 /* SettingsView.swift */; };
 		B9AA0A802CD693A400A3DDC5 /* CaptureContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AA0A7F2CD693A400A3DDC5 /* CaptureContactView.swift */; };
 		B9AA0A822CD693B700A3DDC5 /* ContactListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AA0A812CD693B700A3DDC5 /* ContactListView.swift */; };
 		B9AA0A842CD693E600A3DDC5 /* ContactDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AA0A832CD693E600A3DDC5 /* ContactDetailView.swift */; };
@@ -51,6 +52,7 @@
 		B9210A122C73863600DB3C27 /* HeadmanNationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeadmanNationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9210A162C73863600DB3C27 /* HeadmanNationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadmanNationUITests.swift; sourceTree = "<group>"; };
 		B9210A182C73863600DB3C27 /* HeadmanNationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadmanNationUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B957FD422CD705B00011D309 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B9AA0A7F2CD693A400A3DDC5 /* CaptureContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureContactView.swift; sourceTree = "<group>"; };
 		B9AA0A812CD693B700A3DDC5 /* ContactListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListView.swift; sourceTree = "<group>"; };
 		B9AA0A832CD693E600A3DDC5 /* ContactDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailView.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				B9AA0A7F2CD693A400A3DDC5 /* CaptureContactView.swift */,
 				B9AA0A812CD693B700A3DDC5 /* ContactListView.swift */,
 				B9AA0A832CD693E600A3DDC5 /* ContactDetailView.swift */,
+				B957FD422CD705B00011D309 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B92109FE2C73863500DB3C27 /* ContentView.swift in Sources */,
+				B957FD432CD705B00011D309 /* SettingsView.swift in Sources */,
 				B92109FC2C73863500DB3C27 /* HeadmanNationApp.swift in Sources */,
 				B9AA0A802CD693A400A3DDC5 /* CaptureContactView.swift in Sources */,
 				B9AA0A822CD693B700A3DDC5 /* ContactListView.swift in Sources */,
