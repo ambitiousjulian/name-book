@@ -16,10 +16,13 @@
 		B9210A172C73863600DB3C27 /* HeadmanNationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9210A162C73863600DB3C27 /* HeadmanNationUITests.swift */; };
 		B9210A192C73863600DB3C27 /* HeadmanNationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9210A182C73863600DB3C27 /* HeadmanNationUITestsLaunchTests.swift */; };
 		B957FD432CD705B00011D309 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957FD422CD705B00011D309 /* SettingsView.swift */; };
+		B9783F052CD954EE0040F442 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9783F042CD954EE0040F442 /* HomeView.swift */; };
 		B9AA0A802CD693A400A3DDC5 /* CaptureContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AA0A7F2CD693A400A3DDC5 /* CaptureContactView.swift */; };
 		B9AA0A822CD693B700A3DDC5 /* ContactListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AA0A812CD693B700A3DDC5 /* ContactListView.swift */; };
 		B9AA0A842CD693E600A3DDC5 /* ContactDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AA0A832CD693E600A3DDC5 /* ContactDetailView.swift */; };
 		B9AA0A872CD6940F00A3DDC5 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AA0A862CD6940F00A3DDC5 /* ContactModel.swift */; };
+		B9E6D3F62CD84BA400B28755 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E6D3F52CD84BA400B28755 /* CameraView.swift */; };
+		B9E6D3F82CD84BC100B28755 /* SaveContactForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E6D3F72CD84BC100B28755 /* SaveContactForm.swift */; };
 		B9EF6E9F2C73875F0078C3C6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EF6E9E2C73875F0078C3C6 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,10 +56,13 @@
 		B9210A162C73863600DB3C27 /* HeadmanNationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadmanNationUITests.swift; sourceTree = "<group>"; };
 		B9210A182C73863600DB3C27 /* HeadmanNationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadmanNationUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B957FD422CD705B00011D309 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B9783F042CD954EE0040F442 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B9AA0A7F2CD693A400A3DDC5 /* CaptureContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureContactView.swift; sourceTree = "<group>"; };
 		B9AA0A812CD693B700A3DDC5 /* ContactListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListView.swift; sourceTree = "<group>"; };
 		B9AA0A832CD693E600A3DDC5 /* ContactDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailView.swift; sourceTree = "<group>"; };
 		B9AA0A862CD6940F00A3DDC5 /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
+		B9E6D3F52CD84BA400B28755 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		B9E6D3F72CD84BC100B28755 /* SaveContactForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveContactForm.swift; sourceTree = "<group>"; };
 		B9EF6E9E2C73875F0078C3C6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		BE762FBBE8789A7F9FECCD6D /* Pods_HeadmanNation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeadmanNation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1EDD67DA20B3DF0D0BE6AA5 /* Pods-HeadmanNation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeadmanNation.release.xcconfig"; path = "Target Support Files/Pods-HeadmanNation/Pods-HeadmanNation.release.xcconfig"; sourceTree = "<group>"; };
@@ -164,6 +170,9 @@
 				B9AA0A812CD693B700A3DDC5 /* ContactListView.swift */,
 				B9AA0A832CD693E600A3DDC5 /* ContactDetailView.swift */,
 				B957FD422CD705B00011D309 /* SettingsView.swift */,
+				B9E6D3F52CD84BA400B28755 /* CameraView.swift */,
+				B9E6D3F72CD84BC100B28755 /* SaveContactForm.swift */,
+				B9783F042CD954EE0040F442 /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -361,10 +370,13 @@
 			files = (
 				B92109FE2C73863500DB3C27 /* ContentView.swift in Sources */,
 				B957FD432CD705B00011D309 /* SettingsView.swift in Sources */,
+				B9E6D3F82CD84BC100B28755 /* SaveContactForm.swift in Sources */,
 				B92109FC2C73863500DB3C27 /* HeadmanNationApp.swift in Sources */,
+				B9E6D3F62CD84BA400B28755 /* CameraView.swift in Sources */,
 				B9AA0A802CD693A400A3DDC5 /* CaptureContactView.swift in Sources */,
 				B9AA0A822CD693B700A3DDC5 /* ContactListView.swift in Sources */,
 				B9AA0A842CD693E600A3DDC5 /* ContactDetailView.swift in Sources */,
+				B9783F052CD954EE0040F442 /* HomeView.swift in Sources */,
 				B9AA0A872CD6940F00A3DDC5 /* ContactModel.swift in Sources */,
 				B9EF6E9F2C73875F0078C3C6 /* MainView.swift in Sources */,
 			);

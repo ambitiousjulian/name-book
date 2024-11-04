@@ -6,7 +6,6 @@ struct SettingsView: View {
     
     var body: some View {
         ZStack {
-            // Background gradient for consistency
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.purple.opacity(0.8)]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             
@@ -40,20 +39,19 @@ struct SettingsView: View {
                     }
                 }
                 .background(Color.clear)
-                .scrollContentBackground(.hidden) // Keeps gradient visible behind form
+                .scrollContentBackground(.hidden)
                 .padding(.horizontal, 10)
             }
-            .padding(.top)
         }
     }
     
-    // Function to open the website
     private func openWebsite() {
         if let url = websiteURL, UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
     }
 }
+
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
