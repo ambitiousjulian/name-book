@@ -232,7 +232,7 @@ struct CameraView: View {
         photoCaptureDelegate.onPhotoCaptured = { image in
             DispatchQueue.main.async {
                 if let image = image {
-                    self.capturedImage = self.adjustOrientation(for: image)
+                    self.capturedImage = self.applyFrontCameraMirrorIfNeeded(image)
                     self.onDismiss?()
                 }
             }
@@ -240,9 +240,9 @@ struct CameraView: View {
         output.capturePhoto(with: settings, delegate: photoCaptureDelegate)
     }
 
-    private func adjustOrientation(for image: UIImage) -> UIImage {
-        guard let cgImage = image.cgImage else { return image }
-        return UIImage(cgImage: cgImage, scale: image.scale, orientation: .right)
+    private func applyFrontCameraMirrorIfNeeded(_ image: UIImage) -> UIImage {
+        guard isUsingFrontCamera, let cgImage = image.cgImage else { return image }
+        return UIImage(cgImage: cgImage, scale: image.scale, orientation: .leftMirrored)
     }
 
     private func closeCamera() {
