@@ -23,7 +23,6 @@ class ParticleViewModel: ObservableObject {
     private func startAnimation() {
         timer = Timer.publish(every: 0.7, on: .main, in: .common).autoconnect()
             .sink { _ in
-                // Update only positions and opacity for efficiency
                 withAnimation(.easeInOut(duration: 0.7)) {
                     self.particles = self.particles.map { particle in
                         var newParticle = particle
@@ -39,15 +38,14 @@ class ParticleViewModel: ObservableObject {
 
 struct HomeView: View {
     @ObservedObject private var particleVM = ParticleViewModel()
+    @State private var favorites: [Contact] = []
 
     var body: some View {
         NavigationView {
             ZStack {
-                // Background gradient
                 LinearGradient(gradient: Gradient(colors: [Color.black, Color.purple.opacity(0.8)]), startPoint: .top, endPoint: .bottom)
                     .ignoresSafeArea()
 
-                // Particle overlay for shimmer effect
                 ForEach(particleVM.particles) { particle in
                     Circle()
                         .fill(Color.white.opacity(0.8))
@@ -57,56 +55,105 @@ struct HomeView: View {
                         .opacity(particle.opacity)
                 }
 
-                VStack(spacing: 30) {
-                    // Title with custom font
+                VStack(spacing: 20) {
                     Text("Night Out Contact Manager")
                         .font(.custom("Avenir-Heavy", size: 28))
                         .foregroundColor(.pink)
                         .padding(.top, 20)
 
-                    // Button to add a new contact with an icon
-                    NavigationLink(destination: CaptureContactView()) {
-                        HStack {
-                            Image(systemName: "plus.circle.fill")
-                                .font(.title2)
-                                .foregroundColor(.white)
-                            Text("Add New Contact")
-                                .font(.headline)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.white)
+                    // Main Action Buttons
+                    VStack(spacing: 20) {
+                        NavigationLink(destination: CaptureContactView()) {
+                            HStack {
+                                Image(systemName: "plus.circle.fill")
+                                    .font(.title2)
+                                    .foregroundColor(.white)
+                                Text("Add New Contact")
+                                    .font(.headline)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.white)
+                            }
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(LinearGradient(gradient: Gradient(colors: [Color.pink, Color.blue]), startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(15)
+                            .shadow(radius: 10)
                         }
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(LinearGradient(gradient: Gradient(colors: [Color.pink, Color.blue]), startPoint: .leading, endPoint: .trailing))
-                        .cornerRadius(15)
-                        .shadow(radius: 10)
-                    }
-                    .padding(.horizontal, 40)
+                        .padding(.horizontal, 40)
 
-                    // Button to view saved contacts with an icon
-                    NavigationLink(destination: ContactListView()) {
-                        HStack {
-                            Image(systemName: "book.circle.fill")
-                                .font(.title2)
-                                .foregroundColor(.white)
-                            Text("View Saved Contacts")
-                                .font(.headline)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.white)
+                        NavigationLink(destination: ContactListView()) {
+                            HStack {
+                                Image(systemName: "book.circle.fill")
+                                    .font(.title2)
+                                    .foregroundColor(.white)
+                                Text("View Saved Contacts")
+                                    .font(.headline)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.white)
+                            }
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]), startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(15)
+                            .shadow(radius: 10)
                         }
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]), startPoint: .leading, endPoint: .trailing))
-                        .cornerRadius(15)
-                        .shadow(radius: 10)
+                        .padding(.horizontal, 40)
                     }
-                    .padding(.horizontal, 40)
 
                     Spacer()
+
+                    // Favorites Section
+                    if !favorites.isEmpty {
+                        Text("Favorites")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding(.bottom, 5)
+
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 20) {
+                                ForEach(favorites) { contact in
+                                    VStack {
+                                        Image(uiImage: contact.photo ?? UIImage(systemName: "person.circle")!)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 100, height: 100)
+                                            .clipShape(Circle())
+                                            .overlay(Circle().stroke(Color.pink, lineWidth: 3))
+                                            .shadow(radius: 10)
+
+                                        Text(contact.name)
+                                            .font(.headline)
+                                            .foregroundColor(.white)
+                                            .lineLimit(1)
+                                            .frame(width: 100)
+                                    }
+                                    .padding()
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .fill(Color.black.opacity(0.6))
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 15)
+                                                    .stroke(Color.pink.opacity(0.8), lineWidth: 2)
+                                            )
+                                    )
+                                    .shadow(radius: 8)
+                                }
+                            }
+                            .padding(.horizontal)
+                        }
+                        .padding(.bottom, 20)
+                    }
                 }
                 .padding()
             }
             .navigationBarTitle("Home", displayMode: .inline)
+            .onAppear {
+                loadFavorites()
+            }
         }
+    }
+
+    private func loadFavorites() {
+        favorites = UserDefaults.standard.loadContacts()?.filter { $0.isFavorite } ?? []
     }
 }

@@ -10,78 +10,86 @@ struct SaveContactForm: View {
 
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color.black.opacity(0.7), Color.purple.opacity(0.9)]), startPoint: .top, endPoint: .bottom)
+            // Background gradient
+            LinearGradient(gradient: Gradient(colors: [Color.black.opacity(0.8), Color.purple.opacity(0.85)]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
 
-            VStack(spacing: 20) {
+            VStack(spacing: 25) {
+                // Profile Image or Placeholder
                 if let image = capturedImage {
-                    // Full-frame image view, styled nicely
                     Image(uiImage: image)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 180, height: 180)
+                        .frame(width: 160, height: 160)
                         .clipShape(Circle())
                         .overlay(Circle().stroke(Color.pink, lineWidth: 5))
                         .shadow(radius: 10)
-                        .padding(.top)
+                        .padding(.top, 20)
                 } else {
                     Image(systemName: "person.circle.fill")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 150, height: 150)
+                        .frame(width: 160, height: 160)
                         .foregroundColor(.gray)
-                        .padding(.top)
+                        .padding(.top, 20)
                 }
 
-                Form {
-                    Section(header: Text("Contact Information").foregroundColor(.white).font(.headline)) {
-                        TextField("Name", text: $contactName)
-                            .padding()
-                            .background(RoundedRectangle(cornerRadius: 8).fill(Color.white.opacity(0.1)))
-                            .foregroundColor(.white)
-                        
-                        TextField("Phone Number", text: $phoneNumber)
-                            .keyboardType(.phonePad)
-                            .padding()
-                            .background(RoundedRectangle(cornerRadius: 8).fill(Color.white.opacity(0.1)))
-                            .foregroundColor(.white)
-                    }
+                // Contact Form Fields
+                VStack(spacing: 16) {
+                    TextField("Name", text: $contactName)
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 12).fill(Color.white.opacity(0.1)))
+                        .foregroundColor(.white)
+                        .font(.system(size: 18, weight: .medium))
+                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.white.opacity(0.2), lineWidth: 1))
                     
-                    Button(action: saveContact) {
-                        Text("Save Contact")
-                            .font(.headline)
-                            .fontWeight(.bold)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(LinearGradient(gradient: Gradient(colors: [Color.pink, Color.purple]), startPoint: .leading, endPoint: .trailing))
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                            .shadow(radius: 10)
-                    }
-                    .padding(.top, 20)
+                    TextField("Phone Number", text: $phoneNumber)
+                        .keyboardType(.phonePad)
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 12).fill(Color.white.opacity(0.1)))
+                        .foregroundColor(.white)
+                        .font(.system(size: 18, weight: .medium))
+                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.white.opacity(0.2), lineWidth: 1))
                 }
-                .padding(.horizontal)
+                .padding(.horizontal, 24)
+
+                // Save Contact Button
+                Button(action: saveContact) {
+                    Text("Save Contact")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(LinearGradient(gradient: Gradient(colors: [Color.pink, Color.purple]), startPoint: .leading, endPoint: .trailing))
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                        .shadow(radius: 8)
+                }
+                .padding(.horizontal, 24)
+                .padding(.top, 20)
             }
             .padding()
-            
+
+            // Success Message Overlay
             if showSuccessMessage {
                 VStack {
-                    Text("Contact Saved Successfully!")
+                    Text("Contact Saved!")
                         .font(.headline)
                         .foregroundColor(.white)
-                        .padding()
-                        .background(Color.green)
-                        .cornerRadius(10)
-                        .shadow(radius: 10)
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 16)
+                        .background(Color.green.opacity(0.8))
+                        .cornerRadius(12)
+                        .shadow(radius: 8)
                     
                     Button(action: { showSuccessMessage = false }) {
                         Image(systemName: "xmark.circle.fill")
                             .foregroundColor(.white)
-                            .font(.title)
+                            .font(.system(size: 22))
                             .padding(.top, 10)
                     }
                 }
-                .frame(width: 250, height: 120)
+                .padding()
                 .background(Color.black.opacity(0.85))
                 .cornerRadius(15)
                 .shadow(radius: 10)
@@ -90,7 +98,7 @@ struct SaveContactForm: View {
             }
         }
     }
-    
+
     private func saveContact() {
         print("DEBUG: Saving contact with name: \(contactName), phone: \(phoneNumber)")
         let contact = Contact(name: contactName, phoneNumber: phoneNumber, photo: capturedImage)
@@ -107,8 +115,9 @@ struct SaveContactForm: View {
         withAnimation {
             showSuccessMessage = true
         }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+
+        // Automatically dismiss the form after a brief delay for smooth UX
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             presentationMode.wrappedValue.dismiss()
             onDismiss()
         }

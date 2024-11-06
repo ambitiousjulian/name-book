@@ -8,11 +8,12 @@ struct ContactDetailView: View {
 
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color.black, Color.purple.opacity(0.8)]), startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea(.all)
+            // Enhanced background gradient
+            LinearGradient(gradient: Gradient(colors: [Color.black, Color.purple.opacity(0.85)]), startPoint: .top, endPoint: .bottom)
+                .ignoresSafeArea()
             
             VStack(spacing: 20) {
-                // Display contact photo with an optimized frame
+                // Contact photo with refined styling
                 if let photo = contact.photo {
                     Image(uiImage: photo)
                         .resizable()
@@ -20,7 +21,8 @@ struct ContactDetailView: View {
                         .frame(width: 180, height: 180)
                         .clipShape(Circle())
                         .overlay(Circle().stroke(Color.pink, lineWidth: 5))
-                        .shadow(radius: 8)
+                        .shadow(color: Color.black.opacity(0.5), radius: 10, x: 0, y: 4)
+                        .padding(.top, 30)
                 } else {
                     Image(systemName: "person.fill")
                         .resizable()
@@ -28,32 +30,42 @@ struct ContactDetailView: View {
                         .frame(width: 180, height: 180)
                         .clipShape(Circle())
                         .overlay(Circle().stroke(Color.gray, lineWidth: 5))
-                        .shadow(radius: 8)
+                        .foregroundColor(.gray)
+                        .shadow(color: Color.black.opacity(0.5), radius: 10, x: 0, y: 4)
+                        .padding(.top, 30)
                 }
                 
-                // Contact name
+                // Contact name with custom styling
                 Text(contact.name)
-                    .font(.largeTitle)
+                    .font(.system(size: 32, weight: .bold))
                     .foregroundColor(.white)
+                    .padding(.top, 10)
                 
-                // Contact phone number
-                Text(contact.phoneNumber)
-                    .font(.title2)
-                    .foregroundColor(.gray)
-
-                // Delete contact button
+                // Contact phone number with icons
+                HStack(spacing: 5) {
+                    Image(systemName: "phone.fill")
+                        .foregroundColor(.green)
+                    Text(contact.phoneNumber)
+                        .font(.title2)
+                        .foregroundColor(.gray)
+                }
+                
+                Spacer()
+                
+                // Delete contact button with custom gradient
                 Button(action: {
                     showDeleteConfirmation = true
                 }) {
                     Text("Delete Contact")
+                        .font(.headline)
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color.red)
+                        .background(LinearGradient(gradient: Gradient(colors: [Color.red.opacity(0.8), Color.red]), startPoint: .leading, endPoint: .trailing))
                         .foregroundColor(.white)
-                        .cornerRadius(10)
-                        .shadow(radius: 10)
+                        .cornerRadius(12)
+                        .shadow(color: Color.red.opacity(0.4), radius: 10, x: 0, y: 5)
                 }
-                .padding(.top, 20)
+                .padding(.horizontal, 30)
                 .alert(isPresented: $showDeleteConfirmation) {
                     Alert(
                         title: Text("Delete Contact"),
@@ -68,26 +80,30 @@ struct ContactDetailView: View {
                 Spacer()
             }
             .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 25)
+                    .fill(Color.white.opacity(0.1))
+                    .blur(radius: 10)
+                    .padding(.horizontal, 20)
+            )
+            .navigationTitle("Contact Details")
+            .navigationBarTitleDisplayMode(.inline)
+            .padding()
         }
     }
     
     private func confirmDeleteContact() {
         var savedContacts = UserDefaults.standard.loadContacts() ?? []
         
-        // Log current state of contacts before deletion
         print("DEBUG: Contacts before deletion:", savedContacts.map { $0.id })
         
-        // Remove contact with matching ID
         savedContacts.removeAll { $0.id == contact.id }
         
-        // Save updated contacts to UserDefaults
         UserDefaults.standard.saveContacts(savedContacts)
         
-        // Confirm deletion in UserDefaults
         let updatedContacts = UserDefaults.standard.loadContacts() ?? []
         print("DEBUG: Contacts after deletion:", updatedContacts.map { $0.id })
         
-        // Notify parent view of deletion and close the detail view
         onDelete?()
         presentationMode.wrappedValue.dismiss()
     }

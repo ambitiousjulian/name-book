@@ -9,16 +9,23 @@ struct NightOutModeView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                if let image = capturedImage, !showContactForm {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 200, height: 200)
-                        .clipShape(Circle())
-                        .padding()
-                } else {
-                    FallbackView(recentContacts: recentContacts, onOpenCamera: openCamera, onRefreshContacts: loadRecentContacts)
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: [Color.black, Color.purple.opacity(0.85)]), startPoint: .top, endPoint: .bottom)
+                    .ignoresSafeArea()
+
+                VStack(spacing: 20) {
+                    if let image = capturedImage, !showContactForm {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 200, height: 200)
+                            .clipShape(Circle())
+                            .overlay(Circle().stroke(Color.pink, lineWidth: 5))
+                            .shadow(radius: 10)
+                            .padding()
+                    } else {
+                        FallbackView(recentContacts: recentContacts, onOpenCamera: openCamera, onRefreshContacts: loadRecentContacts)
+                    }
                 }
             }
             .sheet(isPresented: $showContactForm, onDismiss: reopenCamera) {
@@ -32,6 +39,7 @@ struct NightOutModeView: View {
                 openCamera()
             }
             .navigationTitle("Night Out Mode")
+            .navigationBarHidden(true)
         }
     }
 
@@ -72,66 +80,98 @@ struct FallbackView: View {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.purple.opacity(0.8)]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             
-            VStack(spacing: 20) {
+            VStack(spacing: 25) {
                 Text("Night Out Mode")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.pink)
                 
                 Button(action: onOpenCamera) {
-                    Text("Open Camera")
-                        .fontWeight(.bold)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.pink)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                        .shadow(radius: 5)
+                    HStack {
+                        Image(systemName: "camera.fill")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                        Text("Open Camera")
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [Color.pink, Color.purple]), startPoint: .leading, endPoint: .trailing)
+                    )
+                    .cornerRadius(15)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                    )
+                    .shadow(color: Color.pink.opacity(0.6), radius: 8, x: 0, y: 4)
                 }
                 .padding(.horizontal, 40)
                 
-                Text("Recent Contacts (Last 5 Hours)")
+                Text("Recent Contacts")
                     .font(.headline)
                     .foregroundColor(.white)
-                    .padding(.top, 20)
+                    .padding(.top, 10)
                 
                 if recentContacts.isEmpty {
                     Text("No recent contacts added.")
                         .foregroundColor(.gray)
+                        .padding()
                 } else {
-                    List(recentContacts, id: \.id) { contact in
-                        NavigationLink(destination: ContactDetailView(contact: contact, onDelete: {
-                            onRefreshContacts()
-                        })) {
-                            HStack {
-                                Image(uiImage: contact.photo ?? UIImage(systemName: "person.circle")!)
-                                    .resizable()
-                                    .frame(width: 40, height: 40)
-                                    .clipShape(Circle())
-                                    .overlay(Circle().stroke(Color.pink, lineWidth: 2))
-                                VStack(alignment: .leading) {
-                                    Text(contact.name)
-                                        .font(.headline)
-                                        .foregroundColor(.white)
-                                    Text(contact.phoneNumber)
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                }
+                    ScrollView {
+                        LazyVStack(spacing: 12) {
+                            ForEach(recentContacts, id: \.id) { contact in
+                                ContactRow(contact: contact)
+                                    .padding(.horizontal, 20)
+                                    .padding(.vertical, 5)
                             }
                         }
-                        .padding(.vertical, 5)
                     }
-                    .listStyle(PlainListStyle())
-                    .frame(maxHeight: 250)
+                    .padding(.top, 10)
                     .background(Color.black.opacity(0.7))
-                    .cornerRadius(10)
+                    .cornerRadius(15)
                     .padding(.horizontal, 20)
+                    .shadow(radius: 8)
                 }
                 
                 Spacer()
             }
             .padding(.top, 40)
         }
+    }
+}
+
+// Enhanced contact row view, non-clickable and without star icon
+struct ContactRow: View {
+    var contact: Contact
+    
+    var body: some View {
+        HStack {
+            Image(uiImage: contact.photo ?? UIImage(systemName: "person.circle")!)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 60, height: 60)
+                .clipShape(Circle())
+                .overlay(Circle().stroke(Color.pink, lineWidth: 2))
+                .shadow(radius: 5)
+            
+            VStack(alignment: .leading) {
+                Text(contact.name)
+                    .font(.headline)
+                    .foregroundColor(.white)
+                Text(contact.phoneNumber)
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+            }
+            
+            Spacer()
+        }
+        .padding()
+        .background(LinearGradient(gradient: Gradient(colors: [Color.black.opacity(0.7), Color.purple.opacity(0.6)]), startPoint: .leading, endPoint: .trailing))
+        .cornerRadius(15)
+        .shadow(radius: 8)
     }
 }
 

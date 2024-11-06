@@ -30,15 +30,6 @@ struct MainView: View {
                     Image(systemName: "moon.fill")
                     Text("Night Out")
                 }
-
-            // Settings Tab
-            NavigationView {
-                SettingsView()
-                    .navigationBarTitle("Settings", displayMode: .inline)
-            }
-            .tabItem {
-                Label("Settings", systemImage: "gearshape.fill")
-            }
         }
         .accentColor(.pink)
     }
