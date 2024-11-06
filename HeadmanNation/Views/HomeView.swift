@@ -56,30 +56,46 @@ struct HomeView: View {
                 }
 
                 VStack(spacing: 20) {
-                    Text("Night Out Contact Manager")
-                        .font(.custom("Avenir-Heavy", size: 28))
-                        .foregroundColor(.pink)
-                        .padding(.top, 20)
+                    Text("🔥 Hotlist: Night Out Contact Manager 🔥")
+                        .font(.system(size: 30, weight: .heavy, design: .rounded))
+                        .foregroundStyle(LinearGradient(colors: [.pink, .purple], startPoint: .leading, endPoint: .trailing))
+                        .shadow(color: .purple.opacity(0.4), radius: 8, x: 0, y: 4)
+                        .padding(.top, 25)
+                        .padding(.horizontal, 10)
+                        .overlay(
+                            Text("🔥")
+                                .font(.system(size: 40))
+                                .offset(x: -150, y: -10),
+                            alignment: .leading
+                        )
+                        .overlay(
+                            Text("🔥")
+                                .font(.system(size: 40))
+                                .offset(x: 150, y: -10),
+                            alignment: .trailing
+                        )
 
+                        
+                    Spacer()
                     // Main Action Buttons
                     VStack(spacing: 20) {
-                        NavigationLink(destination: CaptureContactView()) {
-                            HStack {
-                                Image(systemName: "plus.circle.fill")
-                                    .font(.title2)
-                                    .foregroundColor(.white)
-                                Text("Add New Contact")
-                                    .font(.headline)
-                                    .fontWeight(.semibold)
-                                    .foregroundColor(.white)
-                            }
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(LinearGradient(gradient: Gradient(colors: [Color.pink, Color.blue]), startPoint: .leading, endPoint: .trailing))
-                            .cornerRadius(15)
-                            .shadow(radius: 10)
-                        }
-                        .padding(.horizontal, 40)
+//                        NavigationLink(destination: CaptureContactView()) {
+//                            HStack {
+//                                Image(systemName: "plus.circle.fill")
+//                                    .font(.title2)
+//                                    .foregroundColor(.white)
+//                                Text("Add New Contact")
+//                                    .font(.headline)
+//                                    .fontWeight(.semibold)
+//                                    .foregroundColor(.white)
+//                            }
+//                            .padding()
+//                            .frame(maxWidth: .infinity)
+//                            .background(LinearGradient(gradient: Gradient(colors: [Color.pink, Color.blue]), startPoint: .leading, endPoint: .trailing))
+//                            .cornerRadius(15)
+//                            .shadow(radius: 10)
+//                        }
+//                        .padding(.horizontal, 40)
 
                         NavigationLink(destination: ContactListView()) {
                             HStack {
