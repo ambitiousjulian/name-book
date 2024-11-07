@@ -63,6 +63,7 @@
 		B9AA0A812CD693B700A3DDC5 /* ContactListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListView.swift; sourceTree = "<group>"; };
 		B9AA0A832CD693E600A3DDC5 /* ContactDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailView.swift; sourceTree = "<group>"; };
 		B9AA0A862CD6940F00A3DDC5 /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
+		B9E44DCC2CDD21210070D642 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B9E6D3F52CD84BA400B28755 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		B9E6D3F72CD84BC100B28755 /* SaveContactForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveContactForm.swift; sourceTree = "<group>"; };
 		B9EF6E9E2C73875F0078C3C6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -121,6 +122,7 @@
 		B92109FA2C73863500DB3C27 /* HeadmanNation */ = {
 			isa = PBXGroup;
 			children = (
+				B9E44DCC2CDD21210070D642 /* Info.plist */,
 				B9AA0A852CD693F900A3DDC5 /* Models */,
 				B9EF6E9D2C7387500078C3C6 /* Views */,
 				B92109FB2C73863500DB3C27 /* HeadmanNationApp.swift */,
@@ -551,8 +553,10 @@
 				DEVELOPMENT_TEAM = C8QR42PG32;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HeadmanNation/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Inniva;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
+				INFOPLIST_KEY_NSCameraUsageDescription = "To capture contact photo for record";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -587,8 +591,10 @@
 				DEVELOPMENT_TEAM = C8QR42PG32;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HeadmanNation/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Inniva;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
+				INFOPLIST_KEY_NSCameraUsageDescription = "To capture contact photo for record";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
