@@ -56,7 +56,7 @@ struct HomeView: View {
                 }
 
                 VStack(spacing: 20) {
-                    Text("🔥 Hotlist: Night Out Contact Manager 🔥")
+                    Text("🔥 Inniva: Night Out Contact Manager 🔥")
                         .font(.system(size: 30, weight: .heavy, design: .rounded))
                         .foregroundStyle(LinearGradient(colors: [.pink, .purple], startPoint: .leading, endPoint: .trailing))
                         .shadow(color: .purple.opacity(0.4), radius: 8, x: 0, y: 4)

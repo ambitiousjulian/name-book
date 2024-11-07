@@ -15,6 +15,7 @@
 		B9210A0D2C73863600DB3C27 /* HeadmanNationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9210A0C2C73863600DB3C27 /* HeadmanNationTests.swift */; };
 		B9210A172C73863600DB3C27 /* HeadmanNationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9210A162C73863600DB3C27 /* HeadmanNationUITests.swift */; };
 		B9210A192C73863600DB3C27 /* HeadmanNationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9210A182C73863600DB3C27 /* HeadmanNationUITestsLaunchTests.swift */; };
+		B9512E672CDBB59D000BEBAC /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9512E662CDBB59D000BEBAC /* Launch Screen.storyboard */; };
 		B957FD432CD705B00011D309 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957FD422CD705B00011D309 /* SettingsView.swift */; };
 		B9783F052CD954EE0040F442 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9783F042CD954EE0040F442 /* HomeView.swift */; };
 		B9AA0A802CD693A400A3DDC5 /* CaptureContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AA0A7F2CD693A400A3DDC5 /* CaptureContactView.swift */; };
@@ -55,6 +56,7 @@
 		B9210A122C73863600DB3C27 /* HeadmanNationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeadmanNationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9210A162C73863600DB3C27 /* HeadmanNationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadmanNationUITests.swift; sourceTree = "<group>"; };
 		B9210A182C73863600DB3C27 /* HeadmanNationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadmanNationUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B9512E662CDBB59D000BEBAC /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		B957FD422CD705B00011D309 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B9783F042CD954EE0040F442 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B9AA0A7F2CD693A400A3DDC5 /* CaptureContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureContactView.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				B92109FD2C73863500DB3C27 /* ContentView.swift */,
 				B92109FF2C73863600DB3C27 /* Assets.xcassets */,
 				B9210A012C73863600DB3C27 /* Preview Content */,
+				B9512E662CDBB59D000BEBAC /* Launch Screen.storyboard */,
 			);
 			path = HeadmanNation;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9512E672CDBB59D000BEBAC /* Launch Screen.storyboard in Resources */,
 				B9210A032C73863600DB3C27 /* Preview Assets.xcassets in Resources */,
 				B9210A002C73863600DB3C27 /* Assets.xcassets in Resources */,
 			);
@@ -467,7 +471,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -524,7 +528,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -547,11 +551,14 @@
 				DEVELOPMENT_TEAM = C8QR42PG32;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Inniva;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -580,11 +587,14 @@
 				DEVELOPMENT_TEAM = C8QR42PG32;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Inniva;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
