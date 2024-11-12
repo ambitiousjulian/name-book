@@ -157,6 +157,7 @@ struct HomeView: View {
                 loadFavorites()
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle()) // Force stack navigation style
     }
 
     private func loadFavorites() {

@@ -41,6 +41,7 @@ struct NightOutModeView: View {
             .navigationTitle("Night Out Mode")
             .navigationBarHidden(true)
         }
+        .navigationViewStyle(StackNavigationViewStyle()) // Ensures single-column layout on iPad
     }
 
     private func openCamera() {
@@ -116,7 +117,6 @@ struct FallbackView: View {
                     .padding(.top, 10)
                 
                 if recentContacts.isEmpty {
-                    // Placeholder message when no recent contacts
                     VStack(spacing: 15) {
                         Image(systemName: "person.3.fill")
                             .resizable()

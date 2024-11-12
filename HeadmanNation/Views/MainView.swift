@@ -15,28 +15,37 @@ struct MainView: View {
         UITabBar.appearance().unselectedItemTintColor = UIColor.white
         UITabBar.appearance().tintColor = UIColor.systemPink
     }
+    
     var body: some View {
-        TabView {
-            // Home Tab
-            HomeView()
-                .tabItem {
-                    Image(systemName: "house.fill")
-                    Text("Home")
-                }
-            
-            // Night Out Mode Tab - Opens Camera Directly
-            NightOutModeView()
-                .tabItem {
-                    Image(systemName: "moon.fill")
-                    Text("Night Out")
-                }
+        GeometryReader { geometry in
+            TabView {
+                // Home Tab
+                HomeView()
+                    .tabItem {
+                        Image(systemName: "house.fill")
+                        Text("Home")
+                    }
+                
+                // Night Out Mode Tab - Opens Camera Directly
+                NightOutModeView()
+                    .tabItem {
+                        Image(systemName: "moon.fill")
+                        Text("Night Out")
+                    }
+            }
+            .accentColor(.pink)
+            .frame(width: geometry.size.width, height: geometry.size.height) // Adjust to full screen
         }
-        .accentColor(.pink)
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        Group {
+            MainView()
+                .previewDevice("iPhone 13 Pro")
+            MainView()
+                .previewDevice("iPad Pro (12.9-inch) (6th generation)")
+        }
     }
 }
