@@ -4,6 +4,7 @@ struct SaveContactForm: View {
     @State private var contactName: String = ""
     @State private var phoneNumber: String = ""
     @State private var showSuccessMessage = false
+    @State private var isSaving = false // To prevent multiple saves
     @Environment(\.presentationMode) var presentationMode
     var capturedImage: UIImage?
     var onDismiss: () -> Void
@@ -60,13 +61,17 @@ struct SaveContactForm: View {
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(LinearGradient(gradient: Gradient(colors: [Color.pink, Color.purple]), startPoint: .leading, endPoint: .trailing))
                         .foregroundColor(.white)
                         .cornerRadius(12)
                         .shadow(radius: 8)
                 }
+                .background(
+                    isSaving ? AnyView(Color.gray) : AnyView(LinearGradient(gradient: Gradient(colors: [Color.pink, Color.purple]), startPoint: .leading, endPoint: .trailing))
+                )
+                .disabled(isSaving) // Disable button while saving
                 .padding(.horizontal, 24)
                 .padding(.top, 20)
+
             }
             .padding()
 
@@ -100,6 +105,9 @@ struct SaveContactForm: View {
     }
 
     private func saveContact() {
+        guard !isSaving else { return } // Prevent multiple saves
+        isSaving = true // Set saving state
+        
         print("DEBUG: Saving contact with name: \(contactName), phone: \(phoneNumber)")
         let contact = Contact(name: contactName, phoneNumber: phoneNumber, photo: capturedImage)
         
@@ -118,6 +126,7 @@ struct SaveContactForm: View {
 
         // Automatically dismiss the form after a brief delay for smooth UX
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            isSaving = false // Reset saving state after completion
             presentationMode.wrappedValue.dismiss()
             onDismiss()
         }

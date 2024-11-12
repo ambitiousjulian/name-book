@@ -56,70 +56,60 @@ struct HomeView: View {
                 }
 
                 VStack(spacing: 20) {
-                    Text("🔥 Inniva: Night Out Contact Manager 🔥")
+                    Text("🔥 NightBook: Night Out Contact Manager")
                         .font(.system(size: 30, weight: .heavy, design: .rounded))
                         .foregroundStyle(LinearGradient(colors: [.pink, .purple], startPoint: .leading, endPoint: .trailing))
                         .shadow(color: .purple.opacity(0.4), radius: 8, x: 0, y: 4)
                         .padding(.top, 25)
                         .padding(.horizontal, 10)
-                        .overlay(
-                            Text("🔥")
-                                .font(.system(size: 40))
-                                .offset(x: -150, y: -10),
-                            alignment: .leading
-                        )
-                        .overlay(
-                            Text("🔥")
-                                .font(.system(size: 40))
-                                .offset(x: 150, y: -10),
-                            alignment: .trailing
-                        )
 
-                        
                     Spacer()
+                    
                     // Main Action Buttons
-                    VStack(spacing: 20) {
-//                        NavigationLink(destination: CaptureContactView()) {
-//                            HStack {
-//                                Image(systemName: "plus.circle.fill")
-//                                    .font(.title2)
-//                                    .foregroundColor(.white)
-//                                Text("Add New Contact")
-//                                    .font(.headline)
-//                                    .fontWeight(.semibold)
-//                                    .foregroundColor(.white)
-//                            }
-//                            .padding()
-//                            .frame(maxWidth: .infinity)
-//                            .background(LinearGradient(gradient: Gradient(colors: [Color.pink, Color.blue]), startPoint: .leading, endPoint: .trailing))
-//                            .cornerRadius(15)
-//                            .shadow(radius: 10)
-//                        }
-//                        .padding(.horizontal, 40)
-
-                        NavigationLink(destination: ContactListView()) {
-                            HStack {
-                                Image(systemName: "book.circle.fill")
-                                    .font(.title2)
-                                    .foregroundColor(.white)
-                                Text("View Saved Contacts")
-                                    .font(.headline)
-                                    .fontWeight(.semibold)
-                                    .foregroundColor(.white)
-                            }
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]), startPoint: .leading, endPoint: .trailing))
-                            .cornerRadius(15)
-                            .shadow(radius: 10)
+                    NavigationLink(destination: ContactListView()) {
+                        HStack {
+                            Image(systemName: "book.circle.fill")
+                                .font(.title2)
+                                .foregroundColor(.white)
+                            Text("View Saved Contacts")
+                                .font(.headline)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
                         }
-                        .padding(.horizontal, 40)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]), startPoint: .leading, endPoint: .trailing))
+                        .cornerRadius(15)
+                        .shadow(radius: 10)
                     }
+                    .padding(.horizontal, 40)
 
                     Spacer()
 
                     // Favorites Section
-                    if !favorites.isEmpty {
+                    if favorites.isEmpty {
+                        // Show placeholder message when no favorites are added
+                        VStack {
+                            Image(systemName: "star.circle.fill")
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                                .foregroundColor(.gray.opacity(0.5))
+                                .padding(.bottom, 10)
+                            
+                            Text("No favorites yet, huh?")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white.opacity(0.9))
+                                .padding(.bottom, 5)
+                            
+                            Text("Get out there, champ! Add some VIPs so you don’t forget those wild nights. ⭐️")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 20)
+                        }
+                        .padding(.bottom, 50)
+                    } else {
                         Text("Favorites")
                             .font(.headline)
                             .foregroundColor(.white)

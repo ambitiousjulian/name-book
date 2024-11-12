@@ -116,9 +116,28 @@ struct FallbackView: View {
                     .padding(.top, 10)
                 
                 if recentContacts.isEmpty {
-                    Text("No recent contacts added.")
-                        .foregroundColor(.gray)
-                        .padding()
+                    // Placeholder message when no recent contacts
+                    VStack(spacing: 15) {
+                        Image(systemName: "person.3.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80, height: 80)
+                            .foregroundColor(.gray.opacity(0.5))
+                            .padding(.bottom, 10)
+                        
+                        Text("No recent contacts? Seriously?")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white.opacity(0.9))
+                            .padding(.bottom, 5)
+                        
+                        Text("Get out there, make some memories, and add a few new faces here! 🕶️")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 20)
+                    }
+                    .padding(.top, 20)
                 } else {
                     ScrollView {
                         LazyVStack(spacing: 12) {

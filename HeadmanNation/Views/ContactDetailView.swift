@@ -1,9 +1,12 @@
 import SwiftUI
+import Contacts
+import ContactsUI
 
 struct ContactDetailView: View {
     var contact: Contact
     @Environment(\.presentationMode) var presentationMode
     @State private var showDeleteConfirmation = false
+    @State private var showCopiedAlert = false // To show a confirmation when the number is copied
     var onDelete: (() -> Void)? // Callback for deletion
 
     var body: some View {
@@ -41,15 +44,46 @@ struct ContactDetailView: View {
                     .foregroundColor(.white)
                     .padding(.top, 10)
                 
-                // Contact phone number with icons
-                HStack(spacing: 5) {
+                // Contact phone number with copy functionality
+                HStack(spacing: 10) {
                     Image(systemName: "phone.fill")
                         .foregroundColor(.green)
                     Text(contact.phoneNumber)
                         .font(.title2)
                         .foregroundColor(.gray)
+                        .onTapGesture {
+                            UIPasteboard.general.string = contact.phoneNumber
+                            showCopiedAlert = true
+                        }
+                        .alert(isPresented: $showCopiedAlert) {
+                            Alert(title: Text("Copied!"), message: Text("Phone number copied to clipboard."), dismissButton: .default(Text("OK")))
+                        }
+                    Image(systemName: "doc.on.doc.fill")
+                        .foregroundColor(.gray)
+                        .onTapGesture {
+                            UIPasteboard.general.string = contact.phoneNumber
+                            showCopiedAlert = true
+                        }
                 }
-                
+
+                // Small, minimalistic Message button
+                Button(action: openMessages) {
+                    HStack {
+                        Image(systemName: "message.fill")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                        Text("Message")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 8)
+                    .background(Color.blue.opacity(0.9))
+                    .cornerRadius(8)
+                    .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 4)
+                }
+                .padding(.top, 10)
+
                 Spacer()
                 
                 // Delete contact button with custom gradient
@@ -106,5 +140,12 @@ struct ContactDetailView: View {
         
         onDelete?()
         presentationMode.wrappedValue.dismiss()
+    }
+
+    // Open Messages with the contact's phone number
+    private func openMessages() {
+        if let url = URL(string: "sms:\(contact.phoneNumber)") {
+            UIApplication.shared.open(url)
+        }
     }
 }

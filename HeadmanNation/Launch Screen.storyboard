@@ -22,7 +22,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="INNIVA-removebg" translatesAutoresizingMaskIntoConstraints="NO" id="SyJ-1m-0R1">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Nightbooklogo-removebg-preview" translatesAutoresizingMaskIntoConstraints="NO" id="SyJ-1m-0R1">
                                 <rect key="frame" x="55" y="299" width="283" height="254"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -42,6 +42,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="INNIVA-removebg" width="1024" height="1024"/>
+        <image name="Nightbooklogo-removebg-preview" width="500" height="500"/>
     </resources>
 </document>
